@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원 로그인1</title>
+<title>회원 로그인2</title>
 </head>
 <body>
 <h2>회원 로그인</h2>
 <hr>
-<form action="loginOk1" method="get">
+<form action="loginOk2" method="get">
 	아이디: <input type="text" name="mid"><br><br>
 	비밀번호: <input type="password" name="mpw"><br><br>
 	<input type="submit" value="로그인">
