@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -20,7 +21,7 @@ public class MemberController {
 	@RequestMapping(value ="/login2") 
 	public String login2(HttpServletRequest request, Model model) {
 	return "login2";
-}
+	}
 	@RequestMapping(value ="/loginOk") 
 	public String loginOk(HttpServletRequest request, Model model, HttpSession session, HttpServletResponse response) {
 		String mid = request.getParameter("mid"); //login.jsp에서 클라이언트가 입력한 값 불러오기 그리고 선언
@@ -50,5 +51,31 @@ public class MemberController {
 				return "loginFail";
 			}	
 	
-}
+		}
+		@RequestMapping(value ="/join") 
+		public String join(HttpServletRequest request, Model model) {
+		return "join";
+		}
+		
+		@RequestMapping(value ="/boardlist/{bnum}") 
+		public String boardlist(@PathVariable String bnum, Model model) {
+			model.addAttribute("bnum", bnum);
+			
+		return "boardlist";
+	}
+		@RequestMapping(value="joinOk")
+		//public String joinOk(HttpServletRequest request, Model model) {
+		public String joinOk(MemberDto memberDto, Model model) {
+			//MemberDto의 멤버변수와 join에서 선언한 form 파라미터 이름(name)이 일치하면, 메소드에서 매개변수 memberDto입력시 자동으로 매칭됨
+			
+//			String mid = request.getParameter("mid");
+//			String mpw = request.getParameter("mpw");
+//			String mname = request.getParameter("mname");
+//			String mage = request.getParameter("mage");
+			
+			//MemberDto memberDto =  new MemberDto(mid,mpw,mname,mage);
+			model.addAttribute("memberDto", memberDto);
+			return "joinOk";
+		}
+		
 }
